@@ -1,0 +1,53 @@
+﻿<local:NativePopupWindow 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:UI.Controls"       
+        x:Class="UI.Controls.MessageBox"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        MinWidth="500"
+        MinHeight="200"
+        Closing="Window_OnClosing"   
+        SizeToContent="WidthAndHeight">
+    <local:NativePopupWindow.Resources>
+        <Style x:Key="ImageStyle" TargetType="Image" >
+            <Setter Property="Margin" Value="10,-23,10,10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </local:NativePopupWindow.Resources>
+
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*" MaxHeight="950" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="1" x:Name="InfoIcon" Source="{StaticResource InfoIcon}" Style="{StaticResource ImageStyle}" />
+        <Image Grid.Row="1" Grid.Column="0" x:Name="WarningIcon" Source="{StaticResource WarningIcon}" Style="{StaticResource ImageStyle}" />
+        <Image Grid.Row="1" Grid.Column="0" x:Name="QuestionIcon" Source="{StaticResource QuestionIcon}" Style="{StaticResource ImageStyle}" />
+        <Image Grid.Row="1" Grid.Column="0" x:Name="ErrorIcon" Source="{StaticResource ErrorIcon}" Style="{StaticResource ImageStyle}" />
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="0,-30,0,0" VerticalScrollBarVisibility="Auto">
+            <TextBlock x:Name="MessageText" TextWrapping="Wrap" Margin="10,5,10,5" VerticalAlignment="Center" MaxWidth="650" IsHitTestVisible="False" FontSize="13" />
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="{DynamicResource AccentColorBrush}" Margin="-5,0,-5,-5">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                <local:Button x:Name="YesButton" Margin="5,7,5,7" Width="75" Click="Button_Click" Visibility="Collapsed" Content="Yes" IsRecommended="True" />
+                <local:Button x:Name="NoButton" Margin="5,7,5,7" Width="75" Click="Button_Click" Visibility="Collapsed" Content="No" />
+                <local:Button x:Name="OkButton" Margin="5,7,5,7" Width="75" Click="Button_Click" Visibility="Collapsed" IsDefault="True" Content="OK" IsRecommended="True" />
+                <local:Button x:Name="CancelButton" Margin="5,7,5,7" Width="75" Click="Button_Click" Visibility="Collapsed" Content="Cancel" IsCancel="True" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</local:NativePopupWindow>    

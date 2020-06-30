@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="UI.Shell.Controls.SidebarMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sidebarMenu="clr-namespace:UI.Shell.Controls"
+             xmlns:converters="clr-namespace:UI.Shell.Converters"
+             xmlns:controls="clr-namespace:UI.Shell.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:MenuLabelToImageConverter x:Key="MenuLabelToImageConverter" />
+        <Style x:Key="HyperlinkImageStyle" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="22" />
+            <Setter Property="Height" Value="22" />
+            <Setter Property="Margin" Value="15,8" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="SidebarItemStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Typography.Capitals" Value="Normal" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="6,5,6,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Grid x:Name="Root" >
+                            <ContentPresenter x:Name="Content" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
+                            <Rectangle x:Name="DisabledVisualElement" Fill="#FF3E3E3E" IsHitTestVisible="False" Opacity="0" RadiusY="0" RadiusX="0" />
+                            <Rectangle x:Name="HighlightElement" IsHitTestVisible="False" Margin="2,-2,2,-2" Opacity="0" RadiusY="0" RadiusX="0" >
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#C6CFE8" Offset="0"/>
+                                        <GradientStop Color="White" Offset="0.5"/>
+                                        <GradientStop Color="#C6CFE8" Offset="1.0"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Rectangle x:Name="CheckedElement" Fill="{DynamicResource AccentColorBrush}" Width="5" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="0,-2,0,-2" Opacity="0" RadiusY="0" RadiusX="0" />
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" TargetName="HighlightElement" Value="0.25"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Opacity" TargetName="HighlightElement" Value="0.15"/>
+                                <Setter Property="Opacity" TargetName="CheckedElement" Value="0.85"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MenuItemStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#FFDDDDDD" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Typography.Capitals" Value="Normal" />
+            <Setter Property="Margin" Value="0,10,5,10" />
+        </Style>
+
+        <Style x:Key="SubMenuItemStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="52,5,10,5" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <ItemsControl ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}" Background="Transparent">
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type controls:SidebarMenuTopLevelItem}">
+                    <Grid Margin="0,2,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Label, Converter={StaticResource MenuLabelToImageConverter}}" Style="{StaticResource HyperlinkImageStyle}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Label}" Style="{StaticResource MenuItemStyle}" />
+                    </Grid>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type controls:SidebarMenuSubitem}">
+                    <RadioButton VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,2,0,2" 
+                                 Style="{StaticResource SidebarItemStyle}" GroupName="Sidebar" 
+                                 IsChecked="{Binding IsSelected}">
+                        <RadioButton.Content>
+                            <TextBlock Text="{Binding Label}" Style="{StaticResource SubMenuItemStyle}" />
+                        </RadioButton.Content>
+                    </RadioButton>
+                </DataTemplate>
+            </ItemsControl.Resources>
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                    <ScrollViewer x:Name="ScrollViewer" Padding="{TemplateBinding Padding}" VerticalScrollBarVisibility="Hidden">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</UserControl>

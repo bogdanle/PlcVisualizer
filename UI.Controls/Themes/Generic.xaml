@@ -1,0 +1,36 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/UI.Controls;component/Themes/Colors.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Themes/Fonts.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Themes/VectorIcons.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/HighlightingTextBlock/HighlightingTextBlock.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/GridSplitter/GridSplitter.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/DataGrid/DataGrid.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/BusyIndicator/BusyIndicator.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Window/Window.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/TextBox/TextBox.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Button/Button.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Button/CaptionButton.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/CheckBox/CheckBox.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/ComboBox/ComboBox.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/SearchTextBox/SearchTextBox.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/RadioButton/RadioButton.xaml" />
+        <!--<ResourceDictionary Source="/UI.Controls;component/Menu/Menu.xaml"/>-->
+        <ResourceDictionary Source="/UI.Controls;component/RichTextBox/RichTextBox.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Hyperlink/Hyperlink.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/PopupWindow/PopupWindow.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/TabControl/TabControl.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/TabControl/TabItem.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/ListBox/ListBox.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/ProgressBar/ProgressBar.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/ScrollBar/ScrollBar.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/SplashScreen/SplashScreen.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/NotificationMessage/NotificationMessage.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Wizard/WizardContainer.xaml" />
+        <ResourceDictionary Source="/UI.Controls;component/Wizard/WizardProgressLadder.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

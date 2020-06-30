@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="UI.Shell.Views.HamburgerMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                           
+             xmlns:controls1="clr-namespace:UI.Shell.Controls"
+             xmlns:mvvm="http://prismlibrary.com/"
+             xmlns:controls="clr-namespace:UI.Controls;assembly=UI.Controls"
+             mvvm:ViewModelLocator.AutoWireViewModel="True"
+             FontFamily="Segoe UI"
+             FontSize="12"
+             Foreground="#FFDDDDDD"
+             mc:Ignorable="d" 
+             Name="LayoutRoot"
+             Width="276"
+             d:DesignHeight="815.95" d:DesignWidth="436.281">
+    <UserControl.Resources>
+    </UserControl.Resources>
+
+    <Grid Background="#3E3E3E" Opacity="0.94">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Expanded">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.3" From="-276" To="0" Storyboard.TargetProperty="X" Storyboard.TargetName="translateTransform">
+                            <DoubleAnimation.EasingFunction>
+                                <QuadraticEase EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Collapsed">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0:0:0.3" From="0" To="-276" Storyboard.TargetProperty="X" Storyboard.TargetName="translateTransform">
+                            <DoubleAnimation.EasingFunction>
+                                <BackEase Amplitude=".2" EasingMode="EaseOut"/>
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                </VisualState>             
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <controls:Hyperlink Grid.Row="0" FontFamily="Wingdings" Margin="0,5,10,0" Text="ï" FontSize="20"
+                           Foreground="#FFDDDDDD" HorizontalAlignment="Right"
+                           Command="{Binding HideCommand}">
+            <controls:Hyperlink.RenderTransform>
+                <ScaleTransform ScaleX="1.1" />
+            </controls:Hyperlink.RenderTransform>
+        </controls:Hyperlink>
+
+        <controls1:SidebarMenu Grid.Row="1" ItemsSource="{Binding MenuBuilder.MenuItems}" />
+
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Line Margin="15,0,15,5" Stroke="#55DDDDDD" StrokeThickness="1" X2="1" Stretch="Fill" VerticalAlignment="Center" />
+    
+            <TextBlock Margin="15,5,10,5" Text="Pick color theme:" />
+            <controls:ListBox Margin="12,0,12,5" BorderThickness="0" Background="Transparent" Width="251" Name="Panel"
+                     ItemsSource="{Binding Themes}"
+                     SelectedItem="{Binding SelectedTheme}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel MaxWidth="{Binding ActualWidth, ElementName=Panel}" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle Width="24" Height="24" Margin="2" ToolTip="{Binding Name}" Cursor="Hand">
+                            <Rectangle.Fill>
+                                <SolidColorBrush x:Name="Brush" Color="{Binding AccentColor}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </controls:ListBox>
+        </StackPanel>
+
+        <Line Grid.Row="3" Margin="15,5,15,0" Stroke="#55DDDDDD" StrokeThickness="1" X2="1" Stretch="Fill" VerticalAlignment="Center" />
+
+        <StackPanel Grid.Row="4" Margin="10">
+            <TextBlock Text="App version: " Margin="5,2,5,2">                
+                <Run Text="{Binding ApplicationVersion}" />
+            </TextBlock>
+            <TextBlock Text="Environment: " Margin="5,2,5,2">                
+                <Run Text="{Binding Environment, FallbackValue=Dev}" />
+            </TextBlock>
+            <TextBlock Text="Build date: " Margin="5,2,5,2">                
+                <Run Text="{Binding BuildDate}" />
+            </TextBlock>
+            <controls:Hyperlink Margin="2,5,5,2" Text="Contact technical support" Foreground="SteelBlue" />
+        </StackPanel>
+    </Grid>
+    <UserControl.RenderTransform>
+        <TranslateTransform x:Name="translateTransform" />
+    </UserControl.RenderTransform>
+</UserControl>

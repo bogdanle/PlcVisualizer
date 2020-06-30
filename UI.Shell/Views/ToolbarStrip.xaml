@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="UI.Shell.Views.ToolbarStrip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:UI.Controls;assembly=UI.Controls"             
+             xmlns:regions="http://prismlibrary.com/"
+             FontSize="12"
+             mc:Ignorable="d"                                             
+             Foreground="White"
+             d:DesignHeight="62" d:DesignWidth="1200">
+    <Grid Background="{DynamicResource AccentColorBrush}" MinHeight="60" Height="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <controls:Button Grid.Column="0" IsBorderless="True" Focusable="False" Command="{Binding OpenMenuCommand}">
+            <controls:Button.Content>
+                <StackPanel Margin="5,0,15,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="32" Height="32">
+                    <Line X1="1" Margin="5,2,5,2" Stretch="Fill" Stroke="White" StrokeThickness="2" />
+                    <Line X1="1" Margin="5,2,5,2" Stretch="Fill" Stroke="White" StrokeThickness="2" />
+                    <Line X1="1" Margin="5,2,5,3" Stretch="Fill" Stroke="White" StrokeThickness="2" />
+                    <TextBlock Text="MENU" FontSize="7" HorizontalAlignment="Center" Foreground="White" />
+                </StackPanel>
+            </controls:Button.Content>
+        </controls:Button>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock FontSize="23" Text="{Binding ModuleName, FallbackValue=App Title}" VerticalAlignment="Center" Margin="0,-2,0,0" />
+            <TextBlock FontSize="10" Text="{Binding ViewTitle, FallbackValue=Subtitle}" VerticalAlignment="Center" Margin="0,0,0,0" FontFamily="Segoe UI Light" Opacity="0.8" />
+        </StackPanel>
+
+        <Line Grid.Column="2" Y1="1" Margin="25,15,5,15" Stretch="Fill" Stroke="White" StrokeThickness="0.5" Opacity="0.5" />
+
+        <ContentControl Grid.Column="6" Margin="5" VerticalAlignment="Center" regions:RegionManager.RegionName="ToolbarStripContentRegion" />
+
+        <controls:Button Grid.Column="8" IsBorderless="True" Margin="10,5,10,5" Focusable="False" Command="{Binding PrintCommand}">
+            <controls:Button.Content>
+                <Image Source="{DynamicResource PrintIcon}" Stretch="Uniform" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Print" />
+            </controls:Button.Content>
+        </controls:Button>
+    </Grid>
+</UserControl>

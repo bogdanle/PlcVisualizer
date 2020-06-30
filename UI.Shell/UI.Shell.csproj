@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{283E3C11-1B25-47C2-A852-6873E0B9C078}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UI.Shell</RootNamespace>
+    <AssemblyName>UI.Shell</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Default.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DeployLX.Licensing.v5">
+      <HintPath>..\Lib\DeployLX.Licensing.v5.dll</HintPath>
+    </Reference>
+    <Reference Include="INGEAR.NET.Interfaces">
+      <HintPath>..\Lib\INGEAR.NET.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="INGEAR.NET.Logix">
+      <HintPath>..\Lib\INGEAR.NET.Logix.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\SidebarMenu\SidebarMenu.xaml.cs">
+      <DependentUpon>SidebarMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SidebarMenu\SidebarMenuItem.cs" />
+    <Compile Include="Controls\SidebarMenu\SidebarMenuSubitem.cs" />
+    <Compile Include="Controls\SidebarMenu\SidebarMenuTopLevelItem.cs" />
+    <Compile Include="Converters\LogItemTypeToImageConverter.cs" />
+    <Compile Include="Converters\MenuLabelToImageConverter.cs" />
+    <Compile Include="Interfaces\IMenuBuilder.cs" />
+    <Compile Include="Interfaces\IMenuBuilderCatalog.cs" />
+    <Compile Include="MenuBuilder\MenuBuilder.cs" />
+    <Compile Include="MenuBuilder\MenuBuilderCatalog.cs" />
+    <Compile Include="ViewModels\HamburgerMenuViewModel.cs" />
+    <Compile Include="ViewModels\TopBarViewModel.cs" />
+    <Compile Include="Views\NotificationCenter.xaml.cs">
+      <DependentUpon>NotificationCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolbarStrip.xaml.cs">
+      <DependentUpon>ToolbarStrip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TopBar.xaml.cs">
+      <DependentUpon>TopBar.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\SidebarMenu\SidebarMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BlankToolbarContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HamburgerMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\BlankToolbarContent.xaml.cs">
+      <DependentUpon>BlankToolbarContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HamburgerMenu.xaml.cs">
+      <DependentUpon>HamburgerMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\NotificationCenter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ToolbarStrip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TopBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.1.118</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlcVisualizer.Interfaces\PlcVisualizer.Interfaces.csproj">
+      <Project>{3F1DFF73-00D2-4BA4-82BD-370413695FC2}</Project>
+      <Name>PlcVisualizer.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlcVisualizer.Models\PlcVisualizer.Models.csproj">
+      <Project>{3BF2C751-3ADA-4E0B-B5FB-6B3929E343CF}</Project>
+      <Name>PlcVisualizer.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlcVisualizer.Services\PlcVisualizer.Services.csproj">
+      <Project>{A5A411D5-4F4F-49CE-BFD2-DE6C5DCE7700}</Project>
+      <Name>PlcVisualizer.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlcVisualizer.Views\PlcVisualizer.Views.csproj">
+      <Project>{f185773d-07b4-4c95-bb07-01673dcd2e21}</Project>
+      <Name>PlcVisualizer.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI.Controls\UI.Controls.csproj">
+      <Project>{3a7b7271-ac40-41ea-b9e1-887f751ed32b}</Project>
+      <Name>UI.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI.Core\UI.Core.csproj">
+      <Project>{F3DA7E74-389D-48F7-8B76-6C662195827B}</Project>
+      <Name>UI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI.Infrastructure\UI.Infrastructure.csproj">
+      <Project>{0bc32180-38f5-4f13-9340-9364ff8ed6d1}</Project>
+      <Name>UI.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="appbar.graph.line.ico" />
+    <Resource Include="appbar.graph.line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="appbar.box.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

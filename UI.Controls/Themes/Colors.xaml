@@ -1,0 +1,329 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib" >
+
+    <!-- Common colors -->
+    <Color x:Key="FocusGlowColor">#FF0079FF</Color>
+    <Color x:Key="EditIndicatorColor">Gold</Color>
+    <system:Double x:Key="FocusGlowColorOpacity">0.65</system:Double>
+    <Color x:Key="CheckIconColor">White</Color>
+    <SolidColorBrush x:Key="CheckIconBrush" Color="{StaticResource CheckIconColor}" />
+    <Color x:Key="WatermarkForegroundColor">#FF909090</Color>
+    <SolidColorBrush x:Key="WatermarkForegroundBrush" Color="{StaticResource WatermarkForegroundColor}" />
+    <CornerRadius x:Key="ControlBorderCornerRadius">1</CornerRadius>
+    <system:Double x:Key="ControlBorderBrushOpacity">0.6</system:Double>
+    <LinearGradientBrush x:Key="ControlBorderBrush" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="{StaticResource ControlBorderBrushOpacity}">
+        <GradientStop Color="#FFA3AEB9" Offset="0"/>
+        <GradientStop Color="#FF8399A9" Offset="0.375"/>
+        <GradientStop Color="#FF718597" Offset="0.375"/>
+        <GradientStop Color="#FF617584" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="EditIndicatorBrush" Color="{StaticResource EditIndicatorColor}" />
+    <SolidColorBrush x:Key="WindowTitleForegroundBrush" Color="#A2ACB8"/>
+
+    <Color x:Key="DefaultIconColor">#FF333333</Color>
+    <SolidColorBrush x:Key="DefaultIconBrush" Color="SteelBlue"/>
+
+    <SolidColorBrush x:Key="DefaultFocusVisualBrush" Color="Gray"/>
+    <Color x:Key="DefaultForegroundColor">#FF222222</Color>
+    <SolidColorBrush x:Key="DefaultForegroundBrush" Color="{DynamicResource DefaultForegroundColor}" />
+    <Color x:Key="DisabledForegroundColor">#888</Color>
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="{StaticResource DisabledForegroundColor}" />
+    <Color x:Key="DefaultBackgroundColor">White</Color>
+    <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="{DynamicResource DefaultBackgroundColor}" />    
+    <Duration x:Key="DefaultTransitionsDuration">0:0:0.1</Duration>
+    <Color x:Key="DefaultDropShadowColor">Silver</Color>
+    <Color x:Key="DisabledElementColor">#A5F7F7F7</Color>
+    <SolidColorBrush x:Key="DisabledElementBrush" Color="{DynamicResource DisabledElementColor}" />
+    
+    <!-- Validation tooltip -->
+    <SolidColorBrush x:Key="ValidationToolTipBackgroundBrush" Color="#FFDC000C" />
+    <SolidColorBrush x:Key="ValidationToolTipForegroundBrush" Color="White" />
+    <Color x:Key="ValidationElementBorderColor">#FFDC000C</Color>
+    <SolidColorBrush x:Key="ValidationElementBorderBrush" Color="{StaticResource ValidationElementBorderColor}" />
+    
+    <!-- Search TextBox -->
+    <SolidColorBrush x:Key="SearchIconNormalBorder" Color="Transparent" />
+    <SolidColorBrush x:Key="SearchIconNormalBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="SearchIconHotBorderBrush" Color="#FFD2EDFC" />
+    <SolidColorBrush x:Key="SearchIconHotBackgroundBrush" Color="#FFD2EDFC" />
+    <SolidColorBrush x:Key="TextBoxSelectionBrush" Color="#48A3DA" />
+    <SolidColorBrush x:Key="SearchIconNormalBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="SearchIconNormalBackgroundBrush" Color="Transparent" />
+    
+    <!-- Buttons -->
+    <Color x:Key="CaptionButtonNormalForegroundColor">Transparent</Color>
+    <Color x:Key="CaptionButtonHotForegroundColor">LightBlue</Color>
+    <Color x:Key="CaptionButtonPressedForegroundColor">#FFA0B4CE</Color>
+    <SolidColorBrush x:Key="CaptionButtonNormalForegroundBrush" Color="{StaticResource CaptionButtonNormalForegroundColor}" />
+    <SolidColorBrush x:Key="CaptionButtonHotForegroundBrush" Color="{StaticResource CaptionButtonHotForegroundColor}" />
+    <SolidColorBrush x:Key="CaptionButtonPressedForegroundBrush" Color="{StaticResource CaptionButtonPressedForegroundColor}" />
+
+    <Color x:Key="ButtonStripBackgroundColor">#AAF6F6F6</Color>
+    <SolidColorBrush x:Key="ButtonStripBackgroundBrush" Color="{StaticResource ButtonStripBackgroundColor}"/>
+
+    <Color x:Key="ButtonNormalBackgroundColor">#666666</Color>
+    <Color x:Key="ButtonHotBackgroundColor">#AAEBF3FD</Color>
+    <Color x:Key="ButtonPressedBackgroundColor">#DCEBFC</Color>
+    <Color x:Key="ButtonPressedForegroundColor">#FF222222</Color>
+    <SolidColorBrush x:Key="ButtonNormalBackgroundBrush" Color="{StaticResource ButtonNormalBackgroundColor}" />
+    <SolidColorBrush x:Key="ButtonHotBackgroundBrush" Color="{StaticResource ButtonHotBackgroundColor}" />
+    <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="{StaticResource ButtonPressedBackgroundColor}" />
+    <SolidColorBrush x:Key="ButtonPressedForegroundBrush" Color="{StaticResource ButtonPressedForegroundColor}" />
+
+    <!-- Selected items (treeview,listbox, datagrid etc -->
+    <Color x:Key="ItemHotBackgroundColor">#AAEBF3FD</Color>
+    <Color x:Key="ItemHotForegroundColor">#FF222222</Color>
+    <Color x:Key="ItemSelectedBackgroundColor">#DCEBFC</Color>
+    <Color x:Key="ItemSelectedForegroundColor">#FF222222</Color>
+    <Color x:Key="ItemSelectedInactiveForegroundColor">#FF333333</Color>
+    <Color x:Key="ItemSelectedInactiveBackgroundColor">#FFEDEDED</Color>
+    <Color x:Key="ItemSelectedDisabledBackgroundColor">#FFEDEDED</Color>
+    <Color x:Key="ItemDisabledForegroundColor">#AAAAAA</Color>
+    
+    <SolidColorBrush x:Key="ItemHotBackgroundBrush" Color="{StaticResource ItemHotBackgroundColor}" />
+    <SolidColorBrush x:Key="ItemHotForegroundBrush" Color="{StaticResource ItemHotForegroundColor}" />
+    <SolidColorBrush x:Key="ItemSelectedBackgroundBrush" Color="{StaticResource ItemSelectedBackgroundColor}" />
+    <SolidColorBrush x:Key="ItemSelectedForegroundBrush" Color="{StaticResource ItemSelectedForegroundColor}" />
+    <SolidColorBrush x:Key="ItemSelectedInactiveForegroundBrush" Color="{StaticResource ItemSelectedInactiveForegroundColor}" />
+    <SolidColorBrush x:Key="ItemSelectedInactiveBackgroundBrush" Color="{StaticResource ItemSelectedInactiveBackgroundColor}" />
+    <SolidColorBrush x:Key="ItemSelectedDisabledBackgroundBrush" Color="{StaticResource ItemSelectedDisabledBackgroundColor}" />
+    <SolidColorBrush x:Key="ItemDisabledForegroundBrush" Color="{StaticResource ItemDisabledForegroundColor}" />
+
+    <!-- ComboBox -->
+    <Color x:Key="ComboBoxDropDownButtonNormalForegroundColor">#FF868999</Color>
+    <SolidColorBrush x:Key="ComboBoxDropDownButtonNormalForegroundBrush" Color="{StaticResource ComboBoxDropDownButtonNormalForegroundColor}" />
+    <Color x:Key="ComboBoxDropDownButtonHotForegroundColor">#FF1C97EA</Color>
+    <SolidColorBrush x:Key="ComboBoxDropDownButtonHotForegroundBrush" Color="{StaticResource ComboBoxDropDownButtonHotForegroundColor}" />
+    <Color x:Key="ComboBoxDropDownButtonPressedForegroundColor">DarkSlateBlue</Color>
+    <SolidColorBrush x:Key="ComboBoxDropDownButtonPressedForegroundBrush" Color="{StaticResource ComboBoxDropDownButtonPressedForegroundColor}" />
+
+    <Color x:Key="ComboBoxDropDownButtonNormalBackgroundColor">Transparent</Color>
+    <SolidColorBrush x:Key="ComboBoxDropDownButtonNormalBackgroundBrush" Color="{StaticResource ComboBoxDropDownButtonNormalBackgroundColor}" />
+    <Color x:Key="ComboBoxDropDownButtonHotBackgroundColor">#DBE5F1</Color>
+    <SolidColorBrush x:Key="ComboBoxDropDownButtonHotBackgroundBrush" Color="{StaticResource ComboBoxDropDownButtonHotBackgroundColor}" />
+    <Color x:Key="ComboBoxDropDownButtonPressedBackgroundColor">LightSteelBlue</Color>
+    <SolidColorBrush x:Key="ComboBoxDropDownButtonPressedBackgroundBrush" Color="{StaticResource ComboBoxDropDownButtonPressedBackgroundColor}" />
+
+    <!--Tab Control-->
+    <Color x:Key="VerticalTabItemSeparatorColor">Silver</Color>
+    <SolidColorBrush x:Key="VerticalTabItemSeparatorBrush" Color="{DynamicResource VerticalTabItemSeparatorColor}"/>
+
+    <Color x:Key="VerticalTabItemNormalBackgroundColor">Transparent</Color>
+    <Color x:Key="VerticalTabItemHotBackgroundColor">#DBE5F1</Color>
+    <Color x:Key="VerticalTabItemSelectedBackgroundColor">#FF55A6DD</Color>
+    <Color x:Key="VerticalTabItemDisabledBackgroundColor">LightGray</Color>
+    <Color x:Key="HorizontalTabItemNormalBackgroundColor">Transparent</Color>
+    <Color x:Key="HorizontalTabItemHotBackgroundColor">Transparent</Color>
+    <Color x:Key="HorizontalTabItemSelectedBackgroundColor">Transparent</Color>
+    <Color x:Key="HorizontalTabItemDisabledBackgroundColor">Transparent</Color>
+
+    <SolidColorBrush x:Key="VerticalTabItemNormalBackgroundBrush" Color="{StaticResource VerticalTabItemNormalBackgroundColor}" />
+    <SolidColorBrush x:Key="VerticalTabItemHotBackgroundBrush" Color="{StaticResource VerticalTabItemHotBackgroundColor}" />
+    <SolidColorBrush x:Key="VerticalTabItemSelectedBackgroundBrush" Color="{StaticResource VerticalTabItemSelectedBackgroundColor}"/>
+    <SolidColorBrush x:Key="VerticalTabItemDisabledBackgroundBrush" Color="{StaticResource VerticalTabItemDisabledBackgroundColor}"/>
+    <SolidColorBrush x:Key="HorizontalTabItemNormalBackgroundBrush" Color="{StaticResource HorizontalTabItemNormalBackgroundColor}" />
+    <SolidColorBrush x:Key="HorizontalTabItemHotBackgroundBrush" Color="{StaticResource HorizontalTabItemHotBackgroundColor}" />
+    <SolidColorBrush x:Key="HorizontalTabItemSelectedBackgroundBrush" Color="{StaticResource HorizontalTabItemSelectedBackgroundColor}"/>
+    <SolidColorBrush x:Key="HorizontalTabItemDisabledBackgroundBrush" Color="{StaticResource HorizontalTabItemDisabledBackgroundColor}"/>
+
+    <Color x:Key="VerticalTabItemNormalTextColor">#FF333333</Color>
+    <Color x:Key="VerticalTabItemHotTextColor">LightSlateGray</Color>
+    <Color x:Key="VerticalTabItemSelectedTextColor">White</Color>
+    <Color x:Key="VerticalTabItemDisabledTextColor">LightSlateGray</Color>
+    <Color x:Key="HorizontalTabItemNormalTextColor">#FF888888</Color>
+    <Color x:Key="HorizontalTabItemHotTextColor">#FFA0B4DE</Color>
+    <Color x:Key="HorizontalTabItemSelectedTextColor">#FF333333</Color>
+    <Color x:Key="HorizontalTabItemDisabledTextColor">Transparent</Color>
+    
+    <SolidColorBrush x:Key="VerticalTabItemNormalTextBrush" Color="{StaticResource VerticalTabItemNormalTextColor}" />
+    <SolidColorBrush x:Key="VerticalTabItemHotTextBrush" Color="{StaticResource VerticalTabItemHotTextColor}" />
+    <SolidColorBrush x:Key="VerticalTabItemSelectedTextBrush" Color="{StaticResource VerticalTabItemSelectedTextColor}"/>
+    <SolidColorBrush x:Key="VerticalTabItemDisabledTextBrush" Color="{StaticResource VerticalTabItemDisabledTextColor}"/>
+    <SolidColorBrush x:Key="HorizontalTabItemNormalTextBrush" Color="{StaticResource HorizontalTabItemNormalTextColor}" />
+    <SolidColorBrush x:Key="HorizontalTabItemHotTextBrush" Color="{StaticResource HorizontalTabItemHotTextColor}" />
+    <SolidColorBrush x:Key="HorizontalTabItemSelectedTextBrush" Color="{StaticResource HorizontalTabItemSelectedTextColor}"/>
+    <SolidColorBrush x:Key="HorizontalTabItemDisabledTextBrush" Color="{StaticResource HorizontalTabItemDisabledTextColor}"/>
+
+    <!-- Scrollbar -->
+    <Color x:Key="ScrollBarButtonBorderColor">#BEC0C6</Color>
+    <Color x:Key="ScrollBarButtonBackgroundColor">#FEFEFE</Color>
+    <Color x:Key="ScrollBarButtonHoverBorderColor">#AAAAAA</Color>
+    <Color x:Key="ScrollBarButtonHoverBackgroundColor">#FEFEFE</Color>
+    <Color x:Key="ScrollBarBackgroundColor">#F2F2F2</Color>
+    <Color x:Key="ScrollBarDisabledForegroundColor">#888</Color>
+    <Color x:Key="ScrollBarGlyphColor">#777777</Color>
+    <Color x:Key="ScrollBarHoverGlyphColor">#4293CA</Color>
+    <Color x:Key="ScrollBarPressedGlyphColor">DarkSlateBlue</Color>
+
+    <SolidColorBrush x:Key="ScrollBarButtonBorderBrush" Color="{StaticResource ScrollBarButtonBorderColor}"/>
+    <SolidColorBrush x:Key="ScrollBarButtonBackgroundBrush" Color="{StaticResource ScrollBarButtonBackgroundColor}"/>
+    <SolidColorBrush x:Key="ScrollBarBackgroundBrush" Color="{StaticResource ScrollBarBackgroundColor}"/>
+    <SolidColorBrush x:Key="ScrollBarDisabledForegroundBrush" Color="{StaticResource ScrollBarDisabledForegroundColor}" />
+    <SolidColorBrush x:Key="ScrollBarGlyphBrush" Color="{StaticResource ScrollBarGlyphColor}" />
+    <SolidColorBrush x:Key="ScrollBarHoverGlyphBrush" Color="{StaticResource ScrollBarHoverGlyphColor}" />
+    <SolidColorBrush x:Key="ScrollBarPressedGlyphBrush" Color="{StaticResource ScrollBarPressedGlyphColor}" />
+    
+    <!-- Wizard -->
+    <Color x:Key="FooterBackgroundColor">#DBE5F1</Color>
+    <Color x:Key="ProgressLadderBackgroundColor">#FFF7F7F7</Color>
+    <Color x:Key="ProgressLadderBackgroundColor1">Transparent</Color>
+    <Color x:Key="ProgressLadderSelectedItemBackgroundColor2">LightSteelBlue</Color>
+    <Color x:Key="ProgressLadderSelectedItemBackgroundColor">#DBE5F1</Color>
+    <Color x:Key="ProgressLadderSelectedItemBackgroundColor1">#FF55A6DD</Color>
+    <SolidColorBrush x:Key="FooterBackgroundBrush" Color="{StaticResource FooterBackgroundColor}"/>
+    <SolidColorBrush x:Key="ProgressLadderBackgroundBrush" Color="{StaticResource ProgressLadderBackgroundColor}"/>
+    <SolidColorBrush x:Key="ProgressLadderSelectedItemBackgroundBrush" Color="{StaticResource ProgressLadderSelectedItemBackgroundColor}"/>
+    <SolidColorBrush x:Key="WizardPageHeaderBackground" Color="{StaticResource FooterBackgroundColor}" />
+    <SolidColorBrush x:Key="WizardFooterBackground" Color="{StaticResource FooterBackgroundColor}" />
+    <Color x:Key="ProgressLadderNormalItemTextColor">Black</Color>
+    <Color x:Key="ProgressLadderSelectedItemTextColor">Black</Color>
+    <Color x:Key="ProgressLadderDisabledItemTextColor">DarkGray</Color>
+    <SolidColorBrush x:Key="ProgressLadderDisabledItemTextBrush" Color="{StaticResource ProgressLadderDisabledItemTextColor}" />
+    <SolidColorBrush x:Key="ProgressLadderNormalItemTextBrush" Color="{StaticResource ProgressLadderNormalItemTextColor}" />
+
+    <!-- Navigation bar -->
+    <Color x:Key="NavigationBarItemNormalForegroundColor">Silver</Color>
+    <Color x:Key="NavigationBarItemHotForegroundColor">#FF333333</Color>
+    <Color x:Key="NavigationBarItemSelectedForegroundColor">#FF222222</Color>
+    <Color x:Key="NavigationBarSubitemNormalForegroundColor">#FF555555</Color>
+    <Color x:Key="NavigationBarSubitemHotForegroundColor">#FF8888AA</Color>
+    <Color x:Key="NavigationBarSubitemSelectedForegroundColor">#FF222222</Color>
+
+    <SolidColorBrush x:Key="NavigationBarItemNormalForegroundBrush" Color="{StaticResource NavigationBarItemNormalForegroundColor}" />
+    <SolidColorBrush x:Key="NavigationBarItemHotForegroundBrush" Color="{StaticResource NavigationBarItemHotForegroundColor}" />
+    <SolidColorBrush x:Key="NavigationBarItemSelectedForegroundBrush" Color="{StaticResource NavigationBarItemSelectedForegroundColor}" />
+    <SolidColorBrush x:Key="NavigationBarSubitemNormalForegroundBrush" Color="{StaticResource NavigationBarSubitemNormalForegroundColor}" />
+    <SolidColorBrush x:Key="NavigationBarSubitemHotForegroundBrush" Color="{StaticResource NavigationBarSubitemHotForegroundColor}" />
+    <SolidColorBrush x:Key="NavigationBarSubitemSelectedForegroundBrush" Color="{StaticResource NavigationBarSubitemSelectedForegroundColor}" />
+
+    <!-- Progress Bar -->
+    <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#004682B4" Offset="0" />
+                <GradientStop Color="{DynamicResource AccentColor}" Offset="0.4" />
+                <GradientStop Color="{DynamicResource AccentColor}" Offset="0.6" />
+                <GradientStop Color="#004682B4" Offset="1" />
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ProgressBarBackgroundBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="ProgressBarBorderBrush" Color="#D4D4D4" />
+    <SolidColorBrush x:Key="ProgressBarIndicatorBrush" Color="{DynamicResource AccentColor}"/>
+
+    <!-- Busy Indicator -->
+    <Color x:Key="BusyIndicatorForegroundColor">White</Color>
+    <Color x:Key="BusyIndicatorBackgroundColor">MediumSeaGreen</Color>
+    <Color x:Key="BusyIndicatorOverlayColor">White</Color>
+    
+    <SolidColorBrush x:Key="BusyIndicatorForegroundBrush" Color="{StaticResource BusyIndicatorForegroundColor}" />
+    <SolidColorBrush x:Key="BusyIndicatorBackgroundBrush" Color="{StaticResource BusyIndicatorBackgroundColor}" />
+    <SolidColorBrush x:Key="BusyIndicatorOverlayBrush" Color="{StaticResource BusyIndicatorOverlayColor}" />
+    <LinearGradientBrush x:Key="BusyIndicatorEllipseBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="{StaticResource BusyIndicatorForegroundColor}" Offset="0"/>
+        <GradientStop Color="{StaticResource BusyIndicatorBackgroundColor}" Offset="0.7"/>
+    </LinearGradientBrush>
+
+    <!-- Window -->
+
+    <Color x:Key="AccentColor">SteelBlue</Color>
+    <Color x:Key="WindowBackgroundColor">White</Color>              
+    <SolidColorBrush x:Key="AccentColorBrush" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundColor}" />
+    <SolidColorBrush x:Key="WindowBorder" Color="{DynamicResource AccentColor}" Opacity=".5" />
+    <SolidColorBrush x:Key="WindowBorderActive" Color="{DynamicResource AccentColor}" />
+
+    <LinearGradientBrush x:Key="WindowHeaderGradient" StartPoint="0, 0" EndPoint="0, 1" Opacity=".5">
+        <GradientStop Offset="0" Color="{StaticResource AccentColor}" />
+        <GradientStop Offset=".3" Color="{StaticResource AccentColor}" />
+        <GradientStop Offset="1" Color="Transparent" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="WindowText" Color="#FF333333" />
+    <SolidColorBrush x:Key="WindowTextReadOnly" Color="#FF919191" />
+
+    <!--Tree View-->     
+    
+    <!-- TextBox -->
+    <Color x:Key="TextBoxIconNormalBorderColor">Transparent</Color>
+    <Color x:Key="TextBoxIconNormalBackgroundColor">Transparent</Color>
+    <Color x:Key="TextBoxIconHotBorderColor">Transparent</Color>
+    <Color x:Key="TextBoxIconHotBackgroundColor">Transparent</Color>
+    <SolidColorBrush x:Key="TextBoxIconNormalBorderBrush" Color="{StaticResource TextBoxIconNormalBorderColor}" />
+    <SolidColorBrush x:Key="TextBoxIconNormalBackgroundBrush" Color="{StaticResource TextBoxIconNormalBackgroundColor}" />
+    <SolidColorBrush x:Key="TextBoxIconHotBorderBrush" Color="{StaticResource TextBoxIconHotBorderColor}" />
+    <SolidColorBrush x:Key="TextBoxIconHotBackgroundBrush" Color="{StaticResource TextBoxIconHotBackgroundColor}" />
+
+    <!-- LinkButton -->
+    <SolidColorBrush x:Key="LinkButtonText" Color="#717171" />
+    <SolidColorBrush x:Key="LinkButtonTextHover" Color="Orange" />
+    <SolidColorBrush x:Key="LinkButtonTextPressed" Color="#919191" />
+    <SolidColorBrush x:Key="LinkButtonTextDisabled" Color="#919191" />
+
+    <!--Data Grid-->
+    <SolidColorBrush x:Key="DataGridBackgroundBrush" Color="#FFF3F3F3"/>
+
+
+    <SolidColorBrush x:Key="ButtonBackground" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonBackgroundHover" Color="#dddddd" />
+    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="ButtonBorder" Color="#cccccc" />
+    <SolidColorBrush x:Key="ButtonBorderHover" Color="#cccccc" />
+    <SolidColorBrush x:Key="ButtonBorderPressed" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="ButtonText" Color="#333333" />
+    <SolidColorBrush x:Key="ButtonTextHover" Color="#333333" />
+    <SolidColorBrush x:Key="ButtonTextPressed" Color="#ffffff" />
+    <SolidColorBrush x:Key="ButtonTextDisabled" Color="#a1a1a1" />
+
+    <SolidColorBrush x:Key="DataGridBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="DataGridForeground" Color="#333333" />
+    <SolidColorBrush x:Key="DataGridCellBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="DataGridCellBackgroundHover" Color="#dddddd" />
+    <SolidColorBrush x:Key="DataGridCellBackgroundSelected" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="DataGridCellForeground" Color="#333333" />
+    <SolidColorBrush x:Key="DataGridCellForegroundHover" Color="#333333" />
+    <SolidColorBrush x:Key="DataGridCellForegroundSelected" Color="#ffffff" />
+    <SolidColorBrush x:Key="DataGridHeaderBackground" Color="Transparent" />
+    <SolidColorBrush x:Key="DataGridHeaderBackgroundHover" Color="#dddddd" />
+    <SolidColorBrush x:Key="DataGridHeaderBackgroundPressed" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="DataGridHeaderBackgroundSelected" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="DataGridHeaderForeground" Color="#333333" />
+    <SolidColorBrush x:Key="DataGridHeaderForegroundHover" Color="#333333" />
+    <SolidColorBrush x:Key="DataGridHeaderForegroundPressed" Color="#ffffff" />
+    <SolidColorBrush x:Key="DataGridHeaderForegroundSelected" Color="#ffffff" />
+    <SolidColorBrush x:Key="DataGridGridLines" Color="#cccccc" />
+    <SolidColorBrush x:Key="DataGridDropSeparator" Color="{DynamicResource AccentColor}" />
+
+    <SolidColorBrush x:Key="Hyperlink" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="HyperlinkHover" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="HyperlinkDisabled" Color="#919191" />
+
+    <SolidColorBrush x:Key="MenuText" Color="#66000000" />
+    <SolidColorBrush x:Key="MenuTextHover" Color="#bb000000" />
+    <SolidColorBrush x:Key="MenuTextSelected" Color="#333333" />
+
+    <SolidColorBrush x:Key="ModernButtonBorder" Color="#919191" />
+    <SolidColorBrush x:Key="ModernButtonBorderHover" Color="#333333" />
+    <SolidColorBrush x:Key="ModernButtonBorderPressed" Color="#333333" />
+    <SolidColorBrush x:Key="ModernButtonBorderDisabled" Color="#919191" />
+    <SolidColorBrush x:Key="ModernButtonIconBackgroundPressed" Color="{DynamicResource AccentColor}" />
+    <SolidColorBrush x:Key="ModernButtonIconForegroundPressed" Color="#ffffff" />
+    <SolidColorBrush x:Key="ModernButtonText" Color="#333333" />
+    <SolidColorBrush x:Key="ModernButtonTextHover" Color="#333333" />
+    <SolidColorBrush x:Key="ModernButtonTextPressed" Color="#333333" />
+    <SolidColorBrush x:Key="ModernButtonTextDisabled" Color="#a1a1a1" />
+
+    <SolidColorBrush x:Key="PopupBackground" Color="#ffffff" />
+
+    <SolidColorBrush x:Key="ProgressBackground" Color="#dddddd" />
+
+    <SolidColorBrush x:Key="SeparatorBackground" Color="#cccccc" />
+
+    <SolidColorBrush x:Key="SubMenuText" Color="#99000000" />
+    <SolidColorBrush x:Key="SubMenuTextHover" Color="#66000000" />
+    <SolidColorBrush x:Key="SubMenuTextSelected" Color="#333333" />
+
+    <Rectangle x:Key="WindowBackgroundContent" x:Shared="false" Height="96"  Fill="{DynamicResource WindowHeaderGradient}" VerticalAlignment="Top"/>
+    <Rectangle x:Key="PopupWindowBackgroundContent" x:Shared="false" Height="50" Fill="{DynamicResource WindowHeaderGradient}" VerticalAlignment="Top"/>
+</ResourceDictionary>

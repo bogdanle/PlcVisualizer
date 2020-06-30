@@ -1,0 +1,85 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:UI.Controls">
+
+    <system:TimeSpan x:Key="FadeInTimeSpan">0:0:0.05</system:TimeSpan>
+    <Duration x:Key="FadeInTransitionsDuration">0:0:0.056</Duration>
+    <system:TimeSpan x:Key="FadeOutTimeSpan">0:0:0.2</system:TimeSpan>
+    <Duration x:Key="FadeOutTransitionsDuration">0:0:0.2</Duration>
+    
+    <Style x:Key="MySplashScreenStyle" TargetType="{x:Type local:SplashScreen}">
+        <Setter Property="WindowStyle" Value="None"/>        
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="Topmost" Value="True"></Setter>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{DynamicResource DefaultForegroundBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource DefaultBackgroundBrush}"/>
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="{DynamicResource DefaultTextFormattingMode}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SplashScreen}">
+                    <Grid x:Name="RootElement" Visibility="Hidden" Background="{DynamicResource DefaultBackgroundBrush}">                        
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="DisplayStates">
+                                <VisualState x:Name="Show">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="RootElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <DoubleAnimation BeginTime="0" Duration="{StaticResource FadeInTransitionsDuration}" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="WindowBorder"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Hide">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="{StaticResource FadeOutTransitionsDuration}" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="WindowBorder"/>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="{StaticResource FadeOutTimeSpan}" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="RootElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Hidden</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="WindowBorder" Opacity="0">
+                            <ContentPresenter Margin="0" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Visibility" Value="Visible">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="RootElement">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation BeginTime="0" Duration="{StaticResource FadeInTransitionsDuration}" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="WindowBorder"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+    

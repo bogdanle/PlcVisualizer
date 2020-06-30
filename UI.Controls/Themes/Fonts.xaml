@@ -1,0 +1,36 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib" 
+    xmlns:local="clr-namespace:UI.Controls">
+
+    <system:Double x:Key="ZoomFactor">1</system:Double>
+
+    <TextFormattingMode x:Key="DefaultTextFormattingMode">Ideal</TextFormattingMode>
+
+    <!-- Global -->
+    <system:Double x:Key="DefaultFontSize">14</system:Double>
+    <FontFamily x:Key="DefaultFontFamily">Calibri</FontFamily>
+    
+    <!-- Window -->                                         
+    <system:Double x:Key="WindowTitleFontSize">14</system:Double>
+    <FontFamily x:Key="WindowTitleFontFamily">Arial</FontFamily>
+
+    <FontFamily x:Key="SidebarBarMenuFontFamily">Segoe UI</FontFamily>
+    <system:Double x:Key="SidebarBarMenuFontSize">23</system:Double>
+
+    <!-- Tab Control -->
+    <FontFamily x:Key="HorizontalTabItemFontFamily">Calibri</FontFamily>
+    <system:Double x:Key="VerticalTabItemFontSize">14</system:Double>
+    <system:Double x:Key="HorizontalTabItemFontSize">14</system:Double>
+
+    <!-- Calendar -->
+    <system:Double x:Key="CalendarHeaderFontSize">13</system:Double>
+    
+    <!-- Navigation Bar -->
+    <FontFamily x:Key="NavigationBarTopLevelFontFamily">Segoe UI Light</FontFamily>
+    <system:Double x:Key="NavigationBarTopLevelFontSize">22</system:Double>
+    <FontFamily x:Key="NavigationBarSubLevelFontFamily">Calibri</FontFamily>
+    <system:Double x:Key="NavigationBarSubLevelFontSize">14</system:Double>
+
+</ResourceDictionary>
