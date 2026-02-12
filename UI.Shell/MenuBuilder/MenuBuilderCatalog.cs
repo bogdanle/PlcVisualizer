@@ -25,12 +25,14 @@ namespace UI.Shell.MenuBuilder
 
             var list = new List<Type>();
 
-            //var types = AllClasses.FromAssemblies(assemblies);
+            /*
+            var types = AllClasses.FromAssemblies(assemblies);
 
-            //foreach (var type in types.Where(t => t.IsClass && (t.BaseType == typeof(UserControl) || t.BaseType == typeof(Infrastructure.Controls.UserControl))))
-            //{
-            //    list.Add(type);
-            //}
+            foreach (var type in types.Where(t => t.IsClass && (t.BaseType == typeof(UserControl) || t.BaseType == typeof(Infrastructure.Controls.UserControl))))
+            {
+                list.Add(type);
+            }
+            */
 
             return list;
         }

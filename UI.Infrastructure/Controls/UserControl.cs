@@ -12,8 +12,8 @@ namespace UI.Infrastructure.Controls
         {
             try
             {
-                //var container = DiContainer.GetInstance();
-                //EventAggregator = container.Resolve<IEventAggregator>();
+                // var container = DiContainer.GetInstance();
+                // EventAggregator = container.Resolve<IEventAggregator>();
             }
             catch (Exception)
             {

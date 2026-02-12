@@ -30,7 +30,7 @@ namespace UI.Shell.Views
             {
                 Focusable = true;
 
-                _eventAggregator = null; //DiContainer.GetInstance().Resolve<IEventAggregator>();
+                _eventAggregator = null; // DiContainer.GetInstance().Resolve<IEventAggregator>();
                 _eventAggregator?.GetEvent<NotificationMessageEvent>().Subscribe(OnNotificationMessage, ThreadOption.UIThread);
 
                 EventManager.RegisterClassHandler(typeof(MainWindow), Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler(OnPreviewMouseDown));
@@ -40,7 +40,7 @@ namespace UI.Shell.Views
             }
         }
 
-        public ICommand ClearAllCommand => _clearAllCommand ?? (_clearAllCommand = new DelegateCommand(OnClearAll, ClearAllCanExecute)); //.ObservesProperty(() => Items));
+        public ICommand ClearAllCommand => _clearAllCommand ?? (_clearAllCommand = new DelegateCommand(OnClearAll, ClearAllCanExecute)); // .ObservesProperty(() => Items));
 
         public ObservableCollection<NotificationMessageData> Items { get; } = new ObservableCollection<NotificationMessageData>();
 
