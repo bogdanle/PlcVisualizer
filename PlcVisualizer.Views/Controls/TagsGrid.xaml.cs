@@ -4,46 +4,45 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Data;
 
-namespace PlcVisualizer.Views.Controls
+namespace PlcVisualizer.Views.Controls;
+
+/// <summary>
+/// Interaction logic for TagsGrid.xaml.
+/// </summary>
+public partial class TagsGrid : INotifyPropertyChanged
 {
-    /// <summary>
-    /// Interaction logic for TagsGrid.xaml.
-    /// </summary>
-    public partial class TagsGrid : INotifyPropertyChanged
+    public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(nameof(ItemsSource), typeof(IEnumerable), typeof(TagsGrid), new PropertyMetadata(null, OnItemsSourceChanged));
+
+    public TagsGrid()
     {
-        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(TagsGrid), new PropertyMetadata(null, OnItemsSourceChanged));
+        InitializeComponent();
+    }
 
-        public TagsGrid()
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public IEnumerable ItemsSource
+    {
+        get => (IEnumerable)GetValue(ItemsSourceProperty);
+        set => SetValue(ItemsSourceProperty, value);
+    }
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var obj = (TagsGrid)d;
+        if (e.NewValue is IEnumerable itemsSource)
         {
-            InitializeComponent();
-        }
+            obj.dataGrid.ItemsSource = itemsSource;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public IEnumerable ItemsSource
-        {
-            get => (IEnumerable)GetValue(ItemsSourceProperty);
-            set => SetValue(ItemsSourceProperty, value);
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var obj = (TagsGrid)d;
-            if (e.NewValue is IEnumerable itemsSource)
+            ICollectionView colView = CollectionViewSource.GetDefaultView(itemsSource);
+            if (colView is { CanGroup: true })
             {
-                obj.dataGrid.ItemsSource = itemsSource;
-
-                ICollectionView colView = CollectionViewSource.GetDefaultView(itemsSource);
-                if (colView != null && colView.CanGroup)
-                {
-                    colView.GroupDescriptions.Clear();
-                    colView.GroupDescriptions.Add(new PropertyGroupDescription("Group"));
-                }
+                colView.GroupDescriptions.Clear();
+                colView.GroupDescriptions.Add(new PropertyGroupDescription("Group"));
             }
         }
     }

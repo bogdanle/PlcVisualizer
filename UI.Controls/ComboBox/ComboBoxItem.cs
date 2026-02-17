@@ -1,12 +1,11 @@
 ﻿using System.Windows;
 
-namespace UI.Controls
+namespace UI.Controls;
+
+public class ComboBoxItem : System.Windows.Controls.ComboBoxItem
 {
-    public class ComboBoxItem : System.Windows.Controls.ComboBoxItem
+    public ComboBoxItem()
     {
-        public ComboBoxItem()
-        {
-            Style = (Style)Application.Current.Resources["MyComboBoxItemStyle"];            
-        }
+        Style = (Style)Application.Current.Resources["MyComboBoxItemStyle"];            
     }
 }

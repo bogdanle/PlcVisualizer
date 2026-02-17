@@ -1,43 +1,42 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using UI.Shell.ViewModels;
 
-namespace UI.Shell.Views
+namespace UI.Shell.Views;
+
+public partial class MainWindow
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml.
-    /// </summary>
-    public partial class MainWindow
+    public static readonly RoutedCommand UndoCommand = new();
+    public static readonly RoutedCommand HistoryCommand = new();
+    public static readonly RoutedCommand ToggleViewCommand = new();
+
+    public MainWindow(MainWindowViewModel viewModel)
     {
-        public static readonly RoutedCommand UndoCommand = new RoutedCommand();
-        public static readonly RoutedCommand HistoryCommand = new RoutedCommand();
-        public static readonly RoutedCommand ToggleViewCommand = new RoutedCommand();
-        
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
 
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
-        {
-        }
+        DataContext = viewModel;
+    }
 
-        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
-        {
-            dynamic vm = DataContext;
-            vm.OnClosing();
-        }
+    private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+    {
+    }
 
-        private void OnUndo(object sender, ExecutedRoutedEventArgs e)
-        {
-        }
+    private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+    {
+        dynamic vm = DataContext;
+        vm.OnClosing();
+    }
 
-        private void OnHistory(object sender, ExecutedRoutedEventArgs e)
-        {
-        }
+    private void OnUndo(object sender, ExecutedRoutedEventArgs e)
+    {
+    }
 
-        private void OnToggleView(object sender, ExecutedRoutedEventArgs e)
-        {
-        }
+    private void OnHistory(object sender, ExecutedRoutedEventArgs e)
+    {
+    }
+
+    private void OnToggleView(object sender, ExecutedRoutedEventArgs e)
+    {
     }
 }

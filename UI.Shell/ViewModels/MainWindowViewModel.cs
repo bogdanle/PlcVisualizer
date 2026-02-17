@@ -1,178 +1,126 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Input;
-using PlcVisualizer.ViewModels;
-using PlcVisualizer.Views;
-using Prism.Commands;
-using Prism.Events;
-using Prism.Regions;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Logging;
 using UI.Controls;
 using UI.Infrastructure;
-using UI.Infrastructure.Events;
-using UI.Shell.Views;
-using Unity;
+using UI.Infrastructure.Interfaces;
+using UI.Infrastructure.Messaging;
 
-namespace UI.Shell.ViewModels
+namespace UI.Shell.ViewModels;
+
+public partial class MainWindowViewModel : ViewModelCore<MainWindowViewModel>
 {
-    public class MainWindowViewModel : ViewModelCore<MainWindowViewModel>
+    private readonly ThemeManager _themeManager;
+
+    [ObservableProperty]
+    private bool _isBusy;
+
+    [ObservableProperty]
+    private int _progressValue;
+
+    [ObservableProperty]
+    private Visibility _progressBarVisibility = Visibility.Collapsed;
+
+    [ObservableProperty]
+    private NotificationMessageData _messageData;
+
+    [ObservableProperty]
+    private bool _isNotificationCenterOpen;
+
+    [ObservableProperty]
+    private bool _isHamburgerMenuOpen;
+
+    [ObservableProperty]
+    private string _moduleName = "PLC Visualizer";
+
+    [ObservableProperty]
+    private string _viewTitle = "simulation mode";
+
+    public MainWindowViewModel(
+        IMessenger messenger,
+        IMessageBoxService messageBox,
+        IFileDialogService fileDialog,
+        IErrorDialogService errorDialog,
+        ILogger<MainWindowViewModel> logger)
+        : base(messenger, messageBox, fileDialog, errorDialog, logger)
     {
-        private readonly Dictionary<string, Type> _viewMap = new Dictionary<string, Type>();
-        private readonly ThemeManager _themeManager;
-        private bool _isBusy;
-        private int _progressValue;
-        private Visibility _progressBarVisibility = Visibility.Collapsed;
-        private NotificationMessageData _messageData;
-        private ICommand _printCommand;
-        private ICommand _hideNotificationCenterCommand;
-        private ICommand _openMenuCommand;
-        private bool _isNotificationCenterOpen;        
-        private bool _isHamburgerMenuOpen;
-        private string _moduleName = "PLC Visualizer";
-        private string _viewTitle = "simulation mode";
+        _themeManager = new ThemeManager();
+        _themeManager.Apply("Cyan");
 
-        public MainWindowViewModel(IRegionManager regionManager, IUnityContainer container) 
-            : base(container)
+        Messenger.Register<MainWindowViewModel, NotificationMessageEnvelope>(this, static (r, m) =>
+            Application.Current.Dispatcher.Invoke(() => r.OnNotificationMessage(m.Value)));
+        Messenger.Register<MainWindowViewModel, ShowBusyIndicatorMessage>(this, static (r, m) =>
+            Application.Current.Dispatcher.Invoke(() => r.OnShowBusyIndicator(m.Value)));
+        Messenger.Register<MainWindowViewModel, ShowBusyIndicatorWithProgressMessage>(this, static (r, m) =>
+            Application.Current.Dispatcher.Invoke(() => r.OnShowBusyIndicatorWithProgress(m.Value)));
+        Messenger.Register<MainWindowViewModel, UpdateProgressMessage>(this, static (r, m) =>
+            Application.Current.Dispatcher.Invoke(() => r.ProgressValue = m.Value));
+        Messenger.Register<MainWindowViewModel, ShowNotificationCenterMessage>(this, static (r, m) =>
+            Application.Current.Dispatcher.Invoke(() => r.OnShowNotificationCenter(m.Value)));
+        Messenger.Register<MainWindowViewModel, PopupActiveMessage>(this, static (r, m) =>
+            Application.Current.Dispatcher.Invoke(() => r.IsPopupActive = m.Value));
+        Messenger.Register<MainWindowViewModel, ThemeChangedMessage>(this, static (r, m) =>
+            Application.Current.Dispatcher.Invoke(() => r.OnColorThemeChanged(m.Value)));
+    }
+
+    private bool IsPopupActive { get; set; }
+
+    public void OnClosing()
+    {
+    }
+
+    [RelayCommand]
+    private void Print()
+    {
+        Messenger.Send(new PrintRequestedMessage());
+    }
+
+    [RelayCommand]
+    private void OpenMenu()
+    {
+        IsHamburgerMenuOpen = !IsHamburgerMenuOpen;
+    }
+
+    [RelayCommand]
+    private void HideNotificationCenter()
+    {
+        IsNotificationCenterOpen = false;
+    }
+
+    private void OnColorThemeChanged(Theme obj)
+    {
+        _themeManager.Apply(obj.Name);
+    }
+
+    private void OnShowNotificationCenter(bool show)
+    {
+        IsNotificationCenterOpen = !IsNotificationCenterOpen;
+    }
+
+    private void OnNotificationMessage(NotificationMessageData data)
+    {
+        if (!IsPopupActive)
         {
-            regionManager.RegisterViewWithRegion("TopbarRegion", () => container.Resolve(typeof(TopBar)));
-            regionManager.RegisterViewWithRegion("ToolbarStripRegion", () => container.Resolve(typeof(ToolbarStrip)));
-
-            EventAggregator.GetEvent<NotificationMessageEvent>().Subscribe(OnNotificationMessage, ThreadOption.UIThread);
-            EventAggregator.GetEvent<ShowBusyIndicatorEvent>().Subscribe(OnShowBusyIndicator, ThreadOption.UIThread);
-            EventAggregator.GetEvent<ShowBusyIndicatorWithProgressEvent>().Subscribe(OnShowBusyIndicatorWithProgress, ThreadOption.UIThread);
-            EventAggregator.GetEvent<UpdateProgressEvent>().Subscribe(OnUpdateProgress, ThreadOption.UIThread);
-            EventAggregator.GetEvent<ShowNotificationCenterEvent>().Subscribe(OnShowNotificationCenter, ThreadOption.UIThread);            
-            EventAggregator.GetEvent<PopupActiveEvent>().Subscribe(OnPopupActive, ThreadOption.UIThread);
-
-            var eventAggregator = container.Resolve<IEventAggregator>();
-            eventAggregator.GetEvent<ThemeChangedEvent>().Subscribe(OnColorThemeChanged, ThreadOption.UIThread);
-
-            _themeManager = new ThemeManager();
-            _themeManager.Apply("Cyan");
-
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(PlcView));
-            regionManager.RegisterViewWithRegion("ToolbarStripContentRegion", typeof(ToolbarStripContent));
-            EventAggregator.GetEvent<InitializeViewModelEvent>().Publish(typeof(PlcViewModel));
+            MessageData = data;
         }
+    }
 
-        public ICommand PrintCommand => _printCommand ?? (_printCommand = new DelegateCommand(OnPrint));
-       
-        public ICommand OpenMenuCommand => _openMenuCommand ?? (_openMenuCommand = new DelegateCommand(OnOpenMenu));
-    
-        public ICommand HideNotificationCenterCommand => _hideNotificationCenterCommand ?? (_hideNotificationCenterCommand = new DelegateCommand(OnHideNotificationCenter));
-
-        public new bool IsBusy
+    private void OnShowBusyIndicator(bool show)
+    {
+        if (!IsPopupActive)
         {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
+            IsBusy = show;
         }
+    }
 
-        public string ModuleName
+    private void OnShowBusyIndicatorWithProgress(bool show)
+    {
+        if (!IsPopupActive)
         {
-            get => _moduleName;
-            set => SetProperty(ref _moduleName, value);
-        }
-
-        public string ViewTitle
-        {
-            get => _viewTitle;
-            set => SetProperty(ref _viewTitle, value);
-        }
-
-        public bool IsNotificationCenterOpen
-        {
-            get => _isNotificationCenterOpen;
-            set => SetProperty(ref _isNotificationCenterOpen, value);
-        }
-
-        public bool IsHamburgerMenuOpen
-        {
-            get => _isHamburgerMenuOpen;
-            set => SetProperty(ref _isHamburgerMenuOpen, value);
-        }
-
-        public Visibility ProgressBarVisibility
-        {
-            get => _progressBarVisibility;
-            set => SetProperty(ref _progressBarVisibility, value);
-        }
-
-        public int ProgressValue
-        {
-            get => _progressValue;
-            set => SetProperty(ref _progressValue, value);
-        }
-
-        public NotificationMessageData MessageData
-        {
-            get => _messageData;
-            set => SetProperty(ref _messageData, value);
-        }
-      
-        private bool IsPopupActive { get; set; }
-
-        public void OnClosing()
-        {            
-        }
-
-        private void OnColorThemeChanged(Theme obj)
-        {
-            _themeManager.Apply(obj.Name);
-        }
-
-        private void OnPrint()
-        {
-            EventAggregator.GetEvent<PrintEvent>().Publish();
-        }
-
-        private void OnOpenMenu()
-        {
-            IsHamburgerMenuOpen = !IsHamburgerMenuOpen;
-        }
-
-        private void OnShowNotificationCenter(bool show)
-        {
-            IsNotificationCenterOpen = !IsNotificationCenterOpen;
-        }
-
-        private void OnNotificationMessage(NotificationMessageData data)
-        {
-            if (!IsPopupActive)
-            {
-                MessageData = data;
-            }
-        }
-
-        private void OnShowBusyIndicator(bool show)
-        {
-            if (!IsPopupActive)
-            {
-                IsBusy = show;
-            }
-        }
-
-        private void OnUpdateProgress(int value)
-        {
-            ProgressValue = value;
-        }
-
-        private void OnShowBusyIndicatorWithProgress(bool show)
-        {
-            if (!IsPopupActive)
-            {
-                IsBusy = show;
-                ProgressBarVisibility = show ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
-
-        private void OnHideNotificationCenter()
-        {
-            IsNotificationCenterOpen = false;
-        }
-
-        private void OnPopupActive(bool active)
-        {
-            IsPopupActive = active;
+            IsBusy = show;
+            ProgressBarVisibility = show ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System.Windows.Controls;
 
-namespace UI.Shell.Views
+namespace UI.Shell.Views;
+
+public partial class ToolbarStrip : UserControl
 {
-    public partial class ToolbarStrip : UserControl
+    public ToolbarStrip()
     {
-        public ToolbarStrip()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

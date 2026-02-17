@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace PlcVisualizer.Views.Helpers
+namespace PlcVisualizer.Views.Helpers;
+
+public static class ObservableCollectionHelper
 {
-    public static class ObservableCollectionHelper
+    extension<T>(IEnumerable<T> items)
     {
-        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> items)
+        public ObservableCollection<T> ToObservableCollection()
         {
             var oc = new ObservableCollection<T>();
             foreach (var item in items)
@@ -17,11 +19,11 @@ namespace PlcVisualizer.Views.Helpers
             return oc;
         }
 
-        public static IEnumerable<T> Flatten<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> childrenSelector)
+        public IEnumerable<T> Flatten(Func<T, IEnumerable<T>> childrenSelector)
         {
-            if (source != null)
+            if (items != null)
             {
-                foreach (var item in source)
+                foreach (var item in items)
                 {
                     yield return item;
                     foreach (var child in childrenSelector(item).Flatten(childrenSelector))

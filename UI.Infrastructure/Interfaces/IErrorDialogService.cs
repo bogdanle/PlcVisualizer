@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace UI.Infrastructure.Interfaces
+namespace UI.Infrastructure.Interfaces;
+
+public interface IErrorDialogService
 {
-    public interface IErrorDialogService
-    {
-        void Show(Exception ex);
-    }
+    void Show(Exception ex);
 }

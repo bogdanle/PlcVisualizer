@@ -1,68 +1,59 @@
-﻿using System;
-using Logix;
-using Prism.Mvvm;
+using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace PlcVisualizer.Models
+namespace PlcVisualizer.Models;
+
+public class TagInfo : ObservableObject
 {
-    public class TagInfo : BindableBase
+    public string Name { get; set; }
+
+    public string Description { get; set; }
+
+    public object Value
     {
-        private string _dataType;
-        private Tag _tag;
-        private string _quality;
-        private DateTime? _timeStamp;
-        private object _value;
-        private bool _isChecked;
+        get;
+        set => SetProperty(ref field, value);
+    }
 
-        public string Name { get; set; }
+    public string DataType
+    {
+        get;
+        set => SetProperty(ref field, value);
+    }
 
-        public string Description { get; set; }
+    public string Quality
+    {
+        get;
+        set => SetProperty(ref field, value);
+    }
 
-        public object Value
+    public DateTime? TimeStamp
+    {
+        get;
+        set => SetProperty(ref field, value);
+    }
+
+    public string Group { get; set; }
+
+    public bool IsChecked
+    {
+        get;
+        set => SetProperty(ref field, value);
+    }
+
+    public object TagTemplate { get; set; }
+
+    public object Tag
+    {
+        get;
+
+        set
         {
-            get => _value;
-            set => SetProperty(ref _value, value);
-        }
-        
-        public string DataType
-        {
-            get => _dataType ?? TagTemplate?.TypeName;
-            set => SetProperty(ref _dataType, value);
-        }
-
-        public string Quality
-        {
-            get => _quality;
-            set => SetProperty(ref _quality, value);
-        }
-
-        public DateTime? TimeStamp
-        {
-            get => _timeStamp;
-            set => SetProperty(ref _timeStamp, value);
-        }
-
-        public string Group { get; set; }
-        
-        public bool IsChecked
-        {
-            get => _isChecked;
-            set => SetProperty(ref _isChecked, value);
-        }
-
-        public TagTemplate TagTemplate { get; set; }
-       
-        public Tag Tag
-        {
-            get => _tag;
-
-            set
+            if (SetProperty(ref field, value))
             {
-                if (SetProperty(ref _tag, value))
-                {
-                    RaisePropertyChanged(nameof(Value));
-                    RaisePropertyChanged(nameof(Quality));
-                    RaisePropertyChanged(nameof(TimeStamp));
-                }
+                OnPropertyChanged(nameof(Value));
+                OnPropertyChanged(nameof(Quality));
+                OnPropertyChanged(nameof(TimeStamp));
             }
         }
     }

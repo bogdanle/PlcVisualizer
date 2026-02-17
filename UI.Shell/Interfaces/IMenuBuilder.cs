@@ -2,14 +2,13 @@
 using System.Collections.ObjectModel;
 using UI.Shell.Controls;
 
-namespace UI.Shell.Interfaces
+namespace UI.Shell.Interfaces;
+
+public interface IMenuBuilder
 {
-    public interface IMenuBuilder
-    {
-        event EventHandler MenuItemClicked;
+    event EventHandler MenuItemClicked;
 
-        ObservableCollection<SidebarMenuItem> MenuItems { get; }
+    ObservableCollection<SidebarMenuItem> MenuItems { get; }
 
-        void BuildMenu();
-    }
+    void BuildMenu();
 }

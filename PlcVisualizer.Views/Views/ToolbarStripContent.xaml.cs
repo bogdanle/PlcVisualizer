@@ -1,18 +1,14 @@
-namespace PlcVisualizer.Views
+using PlcVisualizer.ViewModels;
+using UI.Infrastructure;
+
+namespace PlcVisualizer.Views;
+
+public partial class ToolbarStripContent
 {
-    public partial class ToolbarStripContent
+    public ToolbarStripContent()
     {
-        public ToolbarStripContent()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            Loaded += ToolbarStripContent_Loaded;
-        }
-
-        private void ToolbarStripContent_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            dynamic vm = DataContext;
-            vm.View = this;
-        }
+        DataContext = (PlcViewModel)AppServices.Provider.GetService(typeof(PlcViewModel));
     }
 }

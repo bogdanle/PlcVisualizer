@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UI.Shell.Interfaces
+namespace UI.Shell.Interfaces;
+
+public interface IMenuBuilderCatalog
 {
-    public interface IMenuBuilderCatalog
-    {
-        IEnumerable<Type> DiscoverViewTypes();
-    }
+    IEnumerable<Type> DiscoverViewTypes();
 }

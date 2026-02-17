@@ -1,44 +1,37 @@
-﻿using System;
-using System.Windows.Input;
-using Prism.Commands;
-using Prism.Events;
+using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Extensions.Logging;
 using UI.Infrastructure;
-using UI.Infrastructure.Events;
-using Unity;
+using UI.Infrastructure.Interfaces;
+using UI.Infrastructure.Messaging;
 
-namespace UI.Shell.ViewModels
+namespace UI.Shell.ViewModels;
+
+public partial class TopBarViewModel : ViewModelCore<TopBarViewModel>
 {
-    public class TopBarViewModel : ViewModelCore<TopBarViewModel>
+    [ObservableProperty]
+    private int _notificationCount;
+
+    public TopBarViewModel(
+        IMessenger messenger,
+        IMessageBoxService messageBox,
+        IFileDialogService fileDialog,
+        IErrorDialogService errorDialog,
+        ILogger<TopBarViewModel> logger)
+        : base(messenger, messageBox, fileDialog, errorDialog, logger)
     {
-        private ICommand _showNotificationCenterCommand;
-        private int _notificationCount;
+        Messenger.Register<TopBarViewModel, UpdateNotificationCountMessage>(this, static (r, m) => r.NotificationCount = m.Value);
+    }
 
-        public TopBarViewModel(IUnityContainer container) 
-            : base(container)
-        {
-            EventAggregator.GetEvent<UpdateNotificationCountEvent>().Subscribe(OnUpdateNotificationCount, ThreadOption.UIThread);
-        }
+    public string ApplicationVersion { get; set; }
 
-        public string ApplicationVersion { get; set; }
+    public string CurrentUser => Environment.UserName;
 
-        public int NotificationCount
-        {
-            get => _notificationCount;
-            set => SetProperty(ref _notificationCount, value);
-        }
-
-        public string CurrentUser => Environment.UserName;
-
-        public ICommand ShowNotificationCenterCommand => _showNotificationCenterCommand ?? (_showNotificationCenterCommand = new DelegateCommand(OnShowNotificationCenter));
-
-        private void OnUpdateNotificationCount(int count)
-        {
-            NotificationCount = count;
-        }
-
-        private void OnShowNotificationCenter()
-        {
-            EventAggregator.GetEvent<ShowNotificationCenterEvent>().Publish(true);
-        }
+    [RelayCommand]
+    private void ShowNotificationCenter()
+    {
+        Messenger.Send(new ShowNotificationCenterMessage(true));
     }
 }

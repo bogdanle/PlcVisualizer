@@ -1,35 +1,34 @@
-﻿namespace UI.Controls
+﻿namespace UI.Controls;
+
+internal static class VisualStates
 {
-    internal static class VisualStates
-    {
-        /// <summary>
-        /// Busyness group name.
-        /// </summary>
-        public const string GroupBusyStatus = "BusyStatusStates";
+    /// <summary>
+    /// Busyness group name.
+    /// </summary>
+    public const string GroupBusyStatus = "BusyStatusStates";
 
-        /// <summary>
-        /// Busy state for BusyIndicator.
-        /// </summary>
-        public const string StateBusy = "Busy";
+    /// <summary>
+    /// Busy state for BusyIndicator.
+    /// </summary>
+    public const string StateBusy = "Busy";
 
-        /// <summary>
-        /// Idle state for BusyIndicator.
-        /// </summary>
-        public const string StateIdle = "Idle";
+    /// <summary>
+    /// Idle state for BusyIndicator.
+    /// </summary>
+    public const string StateIdle = "Idle";
 
-        /// <summary>
-        /// BusyDisplay group.
-        /// </summary>
-        public const string GroupVisibility = "VisibilityStates";
+    /// <summary>
+    /// BusyDisplay group.
+    /// </summary>
+    public const string GroupVisibility = "VisibilityStates";
 
-        /// <summary>
-        /// Visible state name for BusyIndicator.
-        /// </summary>
-        public const string StateVisible = "Visible";
+    /// <summary>
+    /// Visible state name for BusyIndicator.
+    /// </summary>
+    public const string StateVisible = "Visible";
 
-        /// <summary>
-        /// Hidden state name for BusyIndicator.
-        /// </summary>
-        public const string StateHidden = "Hidden";
-    }
+    /// <summary>
+    /// Hidden state name for BusyIndicator.
+    /// </summary>
+    public const string StateHidden = "Hidden";
 }

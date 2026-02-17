@@ -6,7 +6,6 @@
         <ResourceDictionary Source="/UI.Controls;component/Themes/Colors.xaml" />
         <ResourceDictionary Source="/UI.Controls;component/Themes/Fonts.xaml" />
         <ResourceDictionary Source="/UI.Controls;component/Themes/VectorIcons.xaml" />
-        <ResourceDictionary Source="/UI.Controls;component/HighlightingTextBlock/HighlightingTextBlock.xaml" />
         <ResourceDictionary Source="/UI.Controls;component/GridSplitter/GridSplitter.xaml" />
         <ResourceDictionary Source="/UI.Controls;component/DataGrid/DataGrid.xaml" />
         <ResourceDictionary Source="/UI.Controls;component/BusyIndicator/BusyIndicator.xaml" />
@@ -29,8 +28,6 @@
         <ResourceDictionary Source="/UI.Controls;component/ScrollBar/ScrollBar.xaml" />
         <ResourceDictionary Source="/UI.Controls;component/SplashScreen/SplashScreen.xaml" />
         <ResourceDictionary Source="/UI.Controls;component/NotificationMessage/NotificationMessage.xaml" />
-        <ResourceDictionary Source="/UI.Controls;component/Wizard/WizardContainer.xaml" />
-        <ResourceDictionary Source="/UI.Controls;component/Wizard/WizardProgressLadder.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

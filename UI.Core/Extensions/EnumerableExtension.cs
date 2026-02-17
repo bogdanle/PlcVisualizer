@@ -8,20 +8,22 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace UI.Core.Extensions
+namespace UI.Core.Extensions;
+
+/// <summary>
+/// Extension methods for IEnumerable class.
+/// </summary>
+public static class EnumerableExtension
 {
-    /// <summary>
-    /// Extension methods for IEnumerable class.
-    /// </summary>
-    public static class EnumerableExtension
+    /// <param name="items">The source collection.</param>
+    /// <typeparam name="TEntity">The entity type.</typeparam>
+    extension<TEntity>(IEnumerable<TEntity> items)
     {
         /// <summary>
         /// Convert give collection of entity objects to a DataTable object.
         /// </summary>
-        /// <typeparam name="TEntity">The entity type.</typeparam>
-        /// <param name="items">The source collection.</param>       
         /// <returns>The DataTable object.</returns>
-        public static DataTable ToDataTable<TEntity>(this IEnumerable<TEntity> items)
+        public DataTable ToDataTable()
         {
             var properties = typeof(TEntity).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
@@ -37,7 +39,7 @@ namespace UI.Core.Extensions
                     continue;
                 }
 
-                if (property.PropertyType.IsValueType && property.PropertyType.IsGenericType && property.PropertyType.Name == "Nullable`1")
+                if (property.PropertyType is { IsValueType: true, IsGenericType: true, Name: "Nullable`1" })
                 {
                     dt.Columns.Add(new DataColumn(property.Name, property.PropertyType.GenericTypeArguments[0]));
                 }
@@ -79,12 +81,10 @@ namespace UI.Core.Extensions
         /// <summary>
         /// Convert given collection of items to ObservableCollection.
         /// </summary>
-        /// <typeparam name="T">The item type.</typeparam>
-        /// <param name="items">The source collection.</param>
         /// <returns>The observable collection of items.</returns>
-        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> items)
+        public ObservableCollection<TEntity> ToObservableCollection()
         {
-            var collection = new ObservableCollection<T>();
+            var collection = new ObservableCollection<TEntity>();
             foreach (var item in items)
             {
                 collection.Add(item);
@@ -96,15 +96,13 @@ namespace UI.Core.Extensions
         /// <summary>
         /// Convert hierarchical data structure to a flat list.
         /// </summary>
-        /// <typeparam name="T">The item type.</typeparam>
-        /// <param name="source">The source collection.</param>
         /// <param name="childrenSelector">The selector function.</param>
         /// <returns>New collection that is flat representation of hierarchical input data.</returns>
-        public static IEnumerable<T> Flatten<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> childrenSelector)
+        public IEnumerable<TEntity> Flatten(Func<TEntity, IEnumerable<TEntity>> childrenSelector)
         {
-            if (source != null)
+            if (items != null)
             {
-                foreach (var item in source)
+                foreach (var item in items)
                 {
                     yield return item;
                     foreach (var child in childrenSelector(item).Flatten(childrenSelector))
@@ -115,9 +113,9 @@ namespace UI.Core.Extensions
             }
         }
 
-        public static Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, Task> body, int limit = 10)
+        public Task ForEachAsync(Func<TEntity, Task> body, int limit = 10)
         {
-            return Task.WhenAll(Partitioner.Create(source)
+            return Task.WhenAll(Partitioner.Create(items)
                 .GetPartitions(limit)
                 .Select(partition => Task.Run(async () =>
                 {

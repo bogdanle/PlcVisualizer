@@ -1,9 +1,8 @@
 ﻿using System.Windows.Controls;
 
-namespace UI.Shell.Controls
+namespace UI.Shell.Controls;
+
+public class SidebarMenuSubitem : SidebarMenuItem
 {
-    public class SidebarMenuSubitem : SidebarMenuItem
-    {
-        public MenuItem Parent { get; set; }
-    }
+    public MenuItem Parent { get; set; }
 }

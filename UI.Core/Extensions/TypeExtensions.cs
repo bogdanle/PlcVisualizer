@@ -1,10 +1,12 @@
 ﻿using System;
 
-namespace UI.Core.Extensions
+namespace UI.Core.Extensions;
+
+public static class TypeExtensions
 {
-    public static class TypeExtensions
+    extension(Type type)
     {
-        public static string GetTypeString(this Type type)
+        public string GetTypeString()
         {
             string typeString = type.ToString();
             int pos = typeString.LastIndexOf('+');
@@ -23,12 +25,12 @@ namespace UI.Core.Extensions
             return typeString.Replace("]", string.Empty);
         }
 
-        public static bool IsCollectionType(this Type type)
+        public bool IsCollectionType()
         {
             return type.GetInterface("ICollection`1") != null;
         }
 
-        public static bool IsComplexType(this Type type)
+        public bool IsComplexType()
         {
             return type.IsClass && type != typeof(string);
         }

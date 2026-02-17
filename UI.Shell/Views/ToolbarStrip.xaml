@@ -1,12 +1,12 @@
-﻿<UserControl x:Class="UI.Shell.Views.ToolbarStrip"
+<UserControl x:Class="UI.Shell.Views.ToolbarStrip"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:controls="clr-namespace:UI.Controls;assembly=UI.Controls"             
-             xmlns:regions="http://prismlibrary.com/"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:UI.Controls;assembly=UI.Controls"
+             xmlns:plcViews="clr-namespace:PlcVisualizer.Views;assembly=PlcVisualizer.Views"
              FontSize="12"
-             mc:Ignorable="d"                                             
+             mc:Ignorable="d"
              Foreground="White"
              d:DesignHeight="62" d:DesignWidth="1200">
     <Grid Background="{DynamicResource AccentColorBrush}" MinHeight="60" Height="Auto">
@@ -40,7 +40,7 @@
 
         <Line Grid.Column="2" Y1="1" Margin="25,15,5,15" Stretch="Fill" Stroke="White" StrokeThickness="0.5" Opacity="0.5" />
 
-        <ContentControl Grid.Column="6" Margin="5" VerticalAlignment="Center" regions:RegionManager.RegionName="ToolbarStripContentRegion" />
+        <plcViews:ToolbarStripContent Grid.Column="6" Margin="5" VerticalAlignment="Center" />
 
         <controls:Button Grid.Column="8" IsBorderless="True" Margin="10,5,10,5" Focusable="False" Command="{Binding PrintCommand}">
             <controls:Button.Content>

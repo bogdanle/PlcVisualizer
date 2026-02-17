@@ -4,7 +4,7 @@
     xmlns:local="clr-namespace:UI.Controls"
     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
 
-    <Style x:Key="InlineHyperlinkStyle"  TargetType="{x:Type Hyperlink}">
+    <Style x:Key="InlineHyperlinkStyle" TargetType="{x:Type Hyperlink}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="OrangeRed" />
@@ -19,14 +19,16 @@
         <Setter Property="Focusable" Value="True" />
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Hyperlink}">
                     <Grid Background="{TemplateBinding Background}" x:Name="rootElement">
-                        <TextBlock x:Name="textBlock" />
+                        <TextBlock x:Name="textBlock" Text="{TemplateBinding Text}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 </ResourceDictionary>
+    

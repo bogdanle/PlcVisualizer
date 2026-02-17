@@ -2,13 +2,12 @@
 using UI.Controls;
 using UI.Infrastructure.Interfaces;
 
-namespace UI.Infrastructure.Services
+namespace UI.Infrastructure.Services;
+
+public class ErrorDialogService : IErrorDialogService
 {
-    public class ErrorDialogService : IErrorDialogService
+    public void Show(Exception ex)
     {
-        public void Show(Exception ex)
-        {
-            ErrorDialog.Show(ex);
-        }        
-    }
+        ErrorDialog.Show(ex);
+    }        
 }

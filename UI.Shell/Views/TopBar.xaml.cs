@@ -1,16 +1,13 @@
-﻿using System.Windows;
+using UI.Infrastructure;
+using UI.Shell.ViewModels;
 
-namespace UI.Shell.Views
+namespace UI.Shell.Views;
+
+public partial class TopBar
 {
-    public partial class TopBar
+    public TopBar()
     {
-        public TopBar()
-        {
-            InitializeComponent();
-        }
-
-        private void Cancel_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
+        InitializeComponent();
+        DataContext = (TopBarViewModel)AppServices.Provider.GetService(typeof(TopBarViewModel));
     }
 }

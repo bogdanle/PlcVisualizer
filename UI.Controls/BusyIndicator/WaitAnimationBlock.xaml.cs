@@ -1,12 +1,11 @@
 ﻿using System.Windows.Controls;
 
-namespace UI.Controls
-{    
-    public partial class WaitAnimationBlock : UserControl
+namespace UI.Controls;
+
+public partial class WaitAnimationBlock : UserControl
+{
+    public WaitAnimationBlock()
     {
-        public WaitAnimationBlock()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

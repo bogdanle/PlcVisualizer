@@ -1,12 +1,11 @@
 ﻿using System.Windows;
 
-namespace UI.Controls
+namespace UI.Controls;
+
+public class RadioButton : System.Windows.Controls.RadioButton
 {
-    public class RadioButton : System.Windows.Controls.RadioButton
+    public RadioButton()
     {
-        public RadioButton()
-        {
-            Style = (Style)Application.Current.Resources["MyRadioButtonStyle"];           
-        }        
-    }
+        Style = (Style)Application.Current.Resources["MyRadioButtonStyle"];           
+    }        
 }
